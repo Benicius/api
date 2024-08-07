@@ -16,3 +16,8 @@ spring:
         format_sql: true
         temp:
           use-jdbc-metadata-defaults: false
+
+---
+kafka:
+  topic:
+    check-in: com.bdsystems.airport.check-in
