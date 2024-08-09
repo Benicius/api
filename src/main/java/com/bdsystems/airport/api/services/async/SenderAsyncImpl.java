@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class SenderAsyncImpl implements SenderAsync {
 
-	private final KafkaTemplate<String, FlightMo> kafkaTemplate;
+	private final KafkaTemplate<String, Object> kafkaTemplate;
 	@Value("${kafka.topic.check-in}")
 	private String topic;
 
-	public SenderAsyncImpl(KafkaTemplate<String, FlightMo> kafkaTemplate
+	public SenderAsyncImpl(KafkaTemplate<String, Object> kafkaTemplate
 	) {
 		this.kafkaTemplate = kafkaTemplate;
 
