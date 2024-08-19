@@ -1,7 +1,9 @@
 server:
-  port: 8091
+  port: 8092
 
 spring:
+  profiles:
+    active: dev
   datasource:
     url: jdbc:postgresql://localhost:5433/airport
     driver-class-name: org.postgresql.Driver
@@ -21,3 +23,11 @@ spring:
 kafka:
   topic:
     check-in: com.bdsystems.airport.check-in
+
+---
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
