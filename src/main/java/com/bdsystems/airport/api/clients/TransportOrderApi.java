@@ -1,6 +1,5 @@
 package com.bdsystems.airport.api.clients;
 
-import com.bdsystems.airport.api.configs.FeignConfiguration;
 import com.bdsystems.airport.api.domains.TransportOrderVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;

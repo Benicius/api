@@ -11,6 +11,9 @@ public record TransportOrderVO(
 				String flightType,
 				LocalDateTime createAt,
 				LocalDateTime updatedAt,
-				String status
+				String status,
+				String sourceLocation,
+				String nextLocation,
+				String targetLocation
 ) {
 }

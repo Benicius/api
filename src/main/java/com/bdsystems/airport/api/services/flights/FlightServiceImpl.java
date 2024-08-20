@@ -1,8 +1,8 @@
 package com.bdsystems.airport.api.services.flights;
 
 import com.bdsystems.airport.api.clients.TransportOrderApi;
-
 import com.bdsystems.airport.api.domains.Flight;
+import com.bdsystems.airport.api.domains.FlightMo;
 import com.bdsystems.airport.api.domains.FlightVo;
 import com.bdsystems.airport.api.domains.TransportOrderVO;
 import com.bdsystems.airport.api.services.async.SenderAsync;
@@ -30,17 +30,19 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public String publishMessage(FlightVo flightMo) {
+	public String publishMessage(FlightVo flightVO) {
+		FlightMo flightMO = flightVO.convertToMessage();
 
+		this.save(flightMO.convertToMessage());
 		TransportOrderVO transportOrder = TransportOrderVO.builder()
-						.flightType(flightMo.flightType().name())
+						.flightType(flightVO.flightType().name())
 						.status("STARTED")
 						.createAt(LocalDateTime.now())
 						.updatedAt(LocalDateTime.now())
-						.reference(flightMo.flightReference()).build();
+						.reference(flightVO.flightReference()).build();
 
 		transportOrderApi.createTransportOrder(transportOrder);
-		return senderAsync.publishMessage(flightMo.convertToMessage());
+		return senderAsync.publishMessage(flightVO.convertToMessage());
 	}
 
 
